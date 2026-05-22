@@ -19,13 +19,13 @@ $kategori = mysqli_query($koneksi, "SELECT * FROM kategori");
             <!-- NAMA MENU -->
             <div class="mb-3">
                 <label class="form-label">Nama Menu</label>
-                <input type="url" name="foto_menu" placeholder="https://contoh.com/makanan.jpg">
+                <input type="text" name="nama_menu" class="form-control" required>
             </div>
 
             <!-- FOTO -->
             <div class="mb-3">
                 <label class="form-label">Foto Menu</label>
-                <input type="file" name="foto_menu" class="form-control" required>
+                <input type="url" name="foto_menu" placeholder="https://contoh.com/makanan.jpg" required>
             </div>
 
             <!-- DESKRIPSI -->
