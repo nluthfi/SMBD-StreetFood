@@ -34,8 +34,7 @@ $toko = mysqli_query($koneksi, "SELECT * FROM toko");
             <!-- FOTO LAMA -->
             <div class="mb-2">
                 <label class="form-label">Foto Saat Ini</label><br>
-                <img src="<?= $data['foto_menu']; ?>" width="150">
-                style="border-radius:10px;">
+                <img src="<?= $data['foto_menu']; ?>" width="150" style="border-radius:10px;">
             </div>
 
             <!-- FOTO BARU -->
