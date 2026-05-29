@@ -93,7 +93,7 @@ CREATE TABLE `menu` (
   `foto_menu` text NOT NULL,
   `deskripsi` text DEFAULT NULL,
   `harga` int(11) DEFAULT NULL,
-  `rasa` enum('pedas','asin','manis','berkuah','asam') DEFAULT NULL,
+  `rasa` varchar(255) DEFAULT NULL,
   `id_kategori` int(11) DEFAULT NULL,
   `id_toko` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -317,6 +317,9 @@ ALTER TABLE `menu`
   ADD PRIMARY KEY (`id_menu`),
   ADD KEY `id_kategori` (`id_kategori`),
   ADD KEY `id_toko` (`id_toko`);
+
+ALTER TABLE menu
+  MODIFY rasa VARCHAR(100);
 
 --
 -- Indexes for table `metode_toko`
