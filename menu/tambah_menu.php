@@ -4,9 +4,11 @@ include '../layout/sidebar.php';
 include '../koneksi.php';
 
 $kategori = mysqli_query($koneksi, "SELECT * FROM kategori");
+$toko = mysqli_query($koneksi, "SELECT * FROM toko");
 ?>
 
 <main class="main-content">
+
 <div class="form-page">
     <div class="form-card">
         <div class="form-title">
@@ -50,25 +52,37 @@ $kategori = mysqli_query($koneksi, "SELECT * FROM kategori");
             <div class="mb-3">
                 <label class="form-label">Kategori</label>
                 <select name="id_kategori" class="form-select" required>
+
                     <option value="">-- Pilih Kategori --</option>
+
                     <?php while($k = mysqli_fetch_assoc($kategori)) { ?>
+
                         <option value="<?= $k['id_kategori']; ?>">
                             <?= $k['kategori_makanan']; ?>
                         </option>
+
                     <?php } ?>
+
                 </select>
             </div>
 
-            <!-- TOKO AJAX SEARCH -->
+            <!-- TOKO -->
             <div class="mb-3">
                 <label class="form-label">Toko</label>
 
-                <select name="id_toko" id="toko" class="form-select" required>
-                    <option value="">-- Cari Toko --</option>
-                </select>
+                <select name="id_toko" class="form-select" required>
 
-                <!-- search input -->
-                <input type="text" id="search_toko" class="form-control mt-2" placeholder="Cari nama toko...">
+                    <option value="">-- Pilih Toko --</option>
+
+                    <?php while($t = mysqli_fetch_assoc($toko)) { ?>
+
+                        <option value="<?= $t['id_toko']; ?>">
+                            <?= $t['nama_toko']; ?>
+                        </option>
+
+                    <?php } ?>
+
+                </select>
             </div>
 
             <!-- BUTTON -->
@@ -82,33 +96,13 @@ $kategori = mysqli_query($koneksi, "SELECT * FROM kategori");
                 <a href="menu.php" class="form-button secondary text-decoration-none">
                     Kembali
                 </a>
+
             </div>
+
         </form>
     </div>
 </div>
+
 </main>
 
 <?php include '../layout/footer.php'; ?>
-
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-$(document).ready(function(){
-    loadToko('');
-
-    $('#search_toko').on('keyup', function(){
-        let keyword = $(this).val();
-        loadToko(keyword);
-    });
-
-    function loadToko(keyword){
-        $.ajax({
-            url: 'ajax_menu.php',
-            method: 'POST',
-            data: { keyword: keyword },
-            success: function(data){
-                $('#toko').html(data);
-            }
-        });
-    }
-});
-</script>
